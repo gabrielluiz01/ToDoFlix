@@ -26,12 +26,14 @@ export default class App extends Component{
   addList = (title, description, status) => {
     this.setState({
       list:{
-        title: ([...title]),
-        description: ([...description]),
-        status: ([...status]),
+        title: title,
+        description: description,
+        status: status,
       }
     })
   }
+
+
 
   renderScreen = () => {
     switch(this.state.currentScreen){
@@ -56,7 +58,8 @@ export default class App extends Component{
     return (
       <div className="App">
         <Header  handleStateScreen={this.handleStateScreen} addList={this.addList}/>
-        {this.renderScreen()}
+        {this.renderScreen()}         
+
       </div>
     );
   }

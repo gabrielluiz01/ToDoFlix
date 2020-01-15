@@ -142,9 +142,10 @@ const Star = styled.img `
 
 const InputModal = styled.input `
    margin-top: 0.5rem;
-   padding : 0.3rem 0.5rem;
-   border: 1px solid #a3a3a3;
+   padding : 0.4rem 0.5rem;
    border-radius: 10px;
+   border: none;
+   background: #F4F6F8;
 `;
 
 const SpanButtons = styled.span `
@@ -178,10 +179,13 @@ export default class Header extends Component {
    state = {
       menu: false,
       modal: false,
+      star: <Star src={require('../../assets/estrela-cinza.svg')}/>,
       title: [],
       description: [],
       status: [],
    }
+
+
 
 
    openMenu = () => {
@@ -193,14 +197,25 @@ export default class Header extends Component {
 
    changeValues = (ev) => {
       this.setState({
-         [ev.target.name]: ev.target.value
+         [ev.target.name]: ev.target.value 
       })
+      console.log(ev.target.name)
    }
 
    handleSubmit = (ev) => {
       ev.preventDefault()
       const {title, description, status} = this.state;
       this.props.addList(title, description, status)
+      this.setState({
+         modal: false,
+      })
+      
+   }
+
+   changeStar = () => {
+      this.setState({
+         star: <Star src={require('../../assets/estrela.svg')}/>
+      })
    }
 
    openModal = () => (
@@ -234,8 +249,11 @@ export default class Header extends Component {
                <Label>
                   Nota:
                   <span>
-                     <Star src={require('../../assets/estrela.svg')}/>
-                     <Star src={require('../../assets/estrela.svg')}/>
+                     <p onClick={this.changeStar}>{this.state.star}</p>
+                     {this.state.star}
+                     {this.state.star}
+                     {this.state.star}
+                     {this.state.star}
                   </span>
                </Label>
                <SpanButtons>
