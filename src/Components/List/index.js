@@ -31,9 +31,6 @@ const BlockFilmes = styled.div `
 `;
 
 const Note = styled.div `
-  position: relative;
-  right: 6vw;
-  top: 2vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,7 +40,6 @@ const Note = styled.div `
   border-radius: 50%;
   background: #75A9A4;
   color: #fff;
-  z-index: 0;
 `;
 
 const Status = styled.div `
@@ -100,7 +96,6 @@ export default class List extends Component {
         <h1>Minha lista:</h1>
         <ListBlock>
           <BlockFilmes>
-            <Note><p>5.0</p></Note>
             <ImageMovie src={require('../../assets/jurassic-park.webp')}/>
             <Status>
               <p>Quero ver</p>
@@ -110,7 +105,6 @@ export default class List extends Component {
           </BlockFilmes>
 
           <BlockFilmes>
-            <Note><p>5.0</p></Note>
             <ImageMovie src={require('../../assets/fratura.jpg')}/>
             <JaVisto>
               <p>Ja Visto</p>

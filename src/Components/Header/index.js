@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import '../../App.css'
+import Dropzone from 'react-dropzone';
 
 const BlockHeader = styled.header `
    display: flex;
@@ -138,6 +139,7 @@ const Claquete = styled.img `
 `;
 const Star = styled.img `
    width: 25px;
+   background: #000;
 `;
 
 const InputModal = styled.input `
@@ -146,6 +148,7 @@ const InputModal = styled.input `
    border-radius: 10px;
    border: none;
    background: #F4F6F8;
+   border: 2px solid #000;
 `;
 
 const SpanButtons = styled.span `
@@ -164,7 +167,7 @@ const ButtonCancel = styled.button `
 `;
 
 const ButtonSend = styled.button `
-   width: 80px;
+   width: auto;
    border-radius: 5px;
    border: none;
    background: #75A9A4;
@@ -174,11 +177,30 @@ const ButtonSend = styled.button `
 `;
 
 
+const DropContainer = styled.div``;
+
+const UploadMessage = styled.p``;
+
+const InputImage = styled.div`
+   max-width: 65%;
+   height: 2rem;
+   margin-top: 0.5rem;
+   padding : 0.4rem 0.5rem;
+   border-radius: 10px;
+   border: none;
+   background: #F4F6F8;
+   border: 2px solid #000;
+`;
+const SendImage = styled.label`
+   display: flex;
+   justify-content: space-between;
+`;
+
 export default class Header extends Component {
 
    state = {
       menu: false,
-      modal: false,
+      modal: true,
       star: <Star src={require('../../assets/estrela-cinza.svg')}/>,
       title: [],
       description: [],
@@ -218,6 +240,18 @@ export default class Header extends Component {
       })
    }
 
+   renderDragMessage = (isDragActive, isDragReject) =>{
+      if(!isDragActive){
+         return <UploadMessage>Arraste arquivos aqui ! ...</UploadMessage>
+      }
+
+      if(isDragReject){
+         return <UploadMessage type="error"> Arquivo não suportado</UploadMessage>
+      }
+
+      return <UploadMessage type="sucess">Solte os arquivos aqui</UploadMessage>
+   }
+
    openModal = () => (
       <Overlay>
          <Modal>
@@ -241,10 +275,10 @@ export default class Header extends Component {
                   <InputModal type="text" name="status" onChange={this.changeValues}/>
                </Label>
 
-               <Label>
-                  Imagem de exibição:
-                  <button>adicionar imagem</button>   
-               </Label>
+               <SendImage>
+                  <InputImage accept="image/*" onDropAccepted={() => {}}/>
+                  <ButtonSend>adicionar imagem</ButtonSend>
+               </SendImage>
 
                <Label>
                   Nota:
