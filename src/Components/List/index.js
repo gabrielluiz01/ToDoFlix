@@ -21,6 +21,11 @@ const ListBlock = styled.div `
   justify-content: space-around;
   flex-wrap: wrap;
   width: 100%;
+
+  @media(max-width: 768px){
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const BlockFilmes = styled.div `
@@ -28,6 +33,15 @@ const BlockFilmes = styled.div `
   flex-direction: column;
   width: 30vw;
   padding: 1rem 0;
+
+  @media(max-width: 768px){
+    width: 60%;
+    display: flex;
+    align-items: center;
+  }
+  @media(max-width: 425px){
+    width: 100%;
+  }
 `;
 
 const Note = styled.div `
@@ -71,26 +85,45 @@ const Title = styled.p `
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 0.5rem;
+  min-width: 70%;
+
+  @media(max-width: 768px){
+    max-width: 100%;
+    text-align: left
+  }
+  @media(max-width: 375px){
+    width: 100%;
+    text-align: left;
+  }
 `;
 
 const Description = styled.p `
   width: 70%;
   text-align: left;
   color: #9d9e9e;
+
+  @media(max-width: 375px){
+    width: 100%;
+  }
 `;
 
 export default class List extends Component {
 
   state = {
-    myList: {
+    list: {
       images: [ ],
       title: [ ],
-      description: [ ]
+      description: [ ],
+      status: [],
     }
   }
 
 
+
   render() {
+
+
+
     return(
       <MyList>
         <h1>Minha lista:</h1>
@@ -115,7 +148,6 @@ export default class List extends Component {
               </Description>
           </BlockFilmes>
         </ListBlock>
-
       </MyList>
     );
   }

@@ -1,214 +1,25 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import '../../App.css'
 import Dropzone from 'react-dropzone';
-
-const BlockHeader = styled.header `
-   display: flex;
-   justify-content: space-between;
-   align-items:center;
-   width: 100%;
-   padding: 4rem 3rem 1rem 3rem;
-   box-shadow: 0px 1px 20px 0px #9b9999;
-
-   h1{
-      font-size: 35px;
-      color: #ce1b60;
-   }
-
-   div{
-      display: flex;
-      width: auto;
-      align-items: center;
-   }
-
-   p{
-      cursor: pointer;
-   }
-`;
-
-const ButtonFilmes = styled.button `
-   padding: 0.3rem 0.6rem;
-   border: none;
-   background: #ce1b60;
-   color: #fff;
-   cursor: pointer;
-   margin: 0 2rem;
-`;
-
-const Menu = styled.div `
-   position: relative;
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   width: auto;
-
-   div{
-      position: absolute;
-      top: 4vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 8vw;
-      box-shadow: 1px 6px 9px 0px #9b9999;
-      background: #fff;
-      padding: 0.3rem;
-      animation: fadeIn 1s ease-in-out;
-   }
-   @keyframes fadeIn{
-      to{
-         margin-top: 2vh;
-      }
-      0% { opacity: 0% ;}
-      100% {  opacity: 100%; }
-   }
-   p{
-      margin: 0.2rem 0;
-   }
-
-`;
-
-const Overlay = styled.div `
-   position: fixed;
-   top: 0;
-   left: 0;
-   right: 0;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   width: 100%;
-   height: 100vh;
-   background: #00000040;
-`;
-const Modal = styled.div `
-   display: flex;
-   justify-content: space-around;
-   min-width: 55vw;
-   height: 80vh;
-   background: #fff;
-   padding: 1rem;
-   border: none;
-   border-radius: 5px;
-   animation: fadeIn 1s ease-in-out;
-`;
-
-const Form = styled.form  `
-   display: flex;
-   flex-direction: column;
-   justify-content: space-evenly;
-   width: 55%;
-   height: 90%;
-
-   h1{
-      font-size: 23px;
-      color: #364859;
-   }
-
-   div{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-   }
-   p{
-      font-size: 30px;
-      color: #6b6b6b70;
-   }
-`;
-
-const Label = styled.label `
-   display: flex;
-   flex-direction: column;
-
-   button{
-      width: 180px;
-      align-self: flex-end;
-      border-radius: 5px;
-      border: none;
-      background: #75A9A4;
-      padding: 0.3rem;
-      color : #fff;
-      cursor: pointer;
-   }
-`;
-
-const Claquete = styled.img `
-   width: 250px;
-   align-self: flex-start;
-   margin-top: 5rem;
-`;
-const Star = styled.img `
-   width: 25px;
-   background: #000;
-`;
-
-const InputModal = styled.input `
-   margin-top: 0.5rem;
-   padding : 0.4rem 0.5rem;
-   border-radius: 10px;
-   border: none;
-   background: #F4F6F8;
-   border: 2px solid #000;
-`;
-
-const SpanButtons = styled.span `
-   display: flex;
-   justify-content: flex-end;
-   width: 100%;
-`;
-
-const ButtonCancel = styled.button `
-   background: none;
-   border: none;
-   color: #9AA3AC;
-   font-weight: bold;
-   margin-right: 2rem;
-   cursor: pointer;
-`;
-
-const ButtonSend = styled.button `
-   width: auto;
-   border-radius: 5px;
-   border: none;
-   background: #75A9A4;
-   padding: 0.3rem;
-   color : #fff;
-   cursor: pointer;
-`;
+import {BlockHeader, ButtonFilmes, Menu, Overlay, Modal, Form, Label, Claquete, Star, InputModal, SpanButtons, ButtonCancel, ButtonSend, UploadMessage, dragActive, dragReject, DropContainer, messageColors, ButtonSendImage} from './styles'
 
 
-const DropContainer = styled.div``;
-
-const UploadMessage = styled.p``;
-
-const InputImage = styled.div`
-   max-width: 65%;
-   height: 2rem;
-   margin-top: 0.5rem;
-   padding : 0.4rem 0.5rem;
-   border-radius: 10px;
-   border: none;
-   background: #F4F6F8;
-   border: 2px solid #000;
-`;
-const SendImage = styled.label`
-   display: flex;
-   justify-content: space-between;
-`;
 
 export default class Header extends Component {
 
    state = {
       menu: false,
-      modal: true,
+      modal: false,
       star: <Star src={require('../../assets/estrela-cinza.svg')}/>,
       title: [],
       description: [],
       status: [],
+      
    }
 
 
-
+   
 
    openMenu = () => {
       this.setState({
@@ -217,12 +28,27 @@ export default class Header extends Component {
    }
 
 
-   changeValues = (ev) => {
+   changeTitle = (ev) => {
       this.setState({
-         [ev.target.name]: ev.target.value 
-      })
-      console.log(ev.target.name)
+         title: ev.target.value.concat(this.state.title)
+      })   
+   
    }
+   changeDescription = (ev) => {
+      this.setState({
+         description: ev.target.value
+      })   
+   
+   }
+   changeStatus = (ev) => {
+      this.setState({
+         status: ev.target.value
+      })   
+
+
+   }
+
+
 
    handleSubmit = (ev) => {
       ev.preventDefault()
@@ -231,7 +57,7 @@ export default class Header extends Component {
       this.setState({
          modal: false,
       })
-      
+   
    }
 
    changeStar = () => {
@@ -242,7 +68,7 @@ export default class Header extends Component {
 
    renderDragMessage = (isDragActive, isDragReject) =>{
       if(!isDragActive){
-         return <UploadMessage>Arraste arquivos aqui ! ...</UploadMessage>
+         return <UploadMessage>Arraste arquivos aqui !</UploadMessage>
       }
 
       if(isDragReject){
@@ -255,7 +81,10 @@ export default class Header extends Component {
    openModal = () => (
       <Overlay>
          <Modal>
+            
             <Claquete src={require('../../assets/claquete.svg')} alt="Claquete"/>
+        
+            
             <Form onSubmit={this.handleSubmit}>
                <div>
                   <h1>Adicionar um novo Filme:</h1>
@@ -264,26 +93,35 @@ export default class Header extends Component {
 
                <Label>
                   Nome:
-                  <InputModal type="text" name="title" autoFocus onChange={this.changeValues}/>
+                  <InputModal type="text" name="title" autoFocus onChange={this.changeTitle}/>
                </Label>
                <Label>
                   Descrição:
-                  <InputModal type="text" name="description" onChange={this.changeValues}/>
+                  <InputModal type="text" name="description" onChange={this.changeDescription}/>
                </Label>
                <Label>
                   Status:
-                  <InputModal type="text" name="status" onChange={this.changeValues}/>
+                  <InputModal type="text" name="status" onChange={this.changeStatus}/>
                </Label>
 
-               <SendImage>
-                  <InputImage accept="image/*" onDropAccepted={() => {}}/>
-                  <ButtonSend>adicionar imagem</ButtonSend>
-               </SendImage>
+               <Dropzone accept="image/*" onDropAccepted={this.props.handleUpload}>
+                  {({ getRootProps, getInputProps, isDragActive, isDragReject }) => (
+                     <DropContainer
+                        {...getRootProps()}
+                        isDragActive={isDragActive}
+                        isDragReject={isDragReject}
+                     >
+                        <input {...getInputProps()}/>
+                        {this.renderDragMessage(isDragActive, isDragReject)}
+                     </DropContainer>
+                  )}
+               </Dropzone>
+               <ButtonSendImage onDropAccepted={() => {}}>Adicionar Imagem</ButtonSendImage>
 
                <Label>
                   Nota:
                   <span>
-                     <p onClick={this.changeStar}>{this.state.star}</p>
+                     {this.state.star}
                      {this.state.star}
                      {this.state.star}
                      {this.state.star}
@@ -292,7 +130,7 @@ export default class Header extends Component {
                </Label>
                <SpanButtons>
                   <ButtonCancel onClick={() => this.setState({ modal: false, })}>cancelar</ButtonCancel>
-                  <ButtonSend>feito</ButtonSend>
+                  <ButtonSend type="submit">feito</ButtonSend>
                </SpanButtons>
             </Form>
          </Modal>
@@ -301,6 +139,9 @@ export default class Header extends Component {
 
 
   render() {
+   
+
+
     return(
       <BlockHeader>
          <h1>ToDoFlix</h1>
