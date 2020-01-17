@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import styled, {css} from 'styled-components';
+import styled from 'styled-components';
 import '../../App.css'
 import Dropzone from 'react-dropzone';
-import {BlockHeader, ButtonFilmes, Menu, Overlay, Modal, Form, Label, Claquete, Star, InputModal, SpanButtons, ButtonCancel, ButtonSend, UploadMessage, dragActive, dragReject, DropContainer, messageColors, ButtonSendImage} from './styles'
+import {BlockHeader, ButtonFilmes, Menu, Overlay, Modal, Form, Label, Claquete, Star, InputModal, SpanButtons, ButtonCancel, ButtonSend, dragActive, dragReject, DropContainer, ButtonSendImage, Description, StatusOptions, LabelStatus} from './styles'
 
 
 
@@ -15,7 +15,6 @@ export default class Header extends Component {
       title: [],
       description: [],
       status: [],
-      
    }
 
 
@@ -28,37 +27,26 @@ export default class Header extends Component {
    }
 
 
-   changeTitle = (ev) => {
+   changeValues = (ev) => {
       this.setState({
-         title: ev.target.value.concat(this.state.title)
+         [ev.target.name]: ev.target.value,
       })   
-   
    }
-   changeDescription = (ev) => {
-      this.setState({
-         description: ev.target.value
-      })   
-   
-   }
-   changeStatus = (ev) => {
-      this.setState({
-         status: ev.target.value
-      })   
 
-
-   }
 
 
 
    handleSubmit = (ev) => {
       ev.preventDefault()
-      const {title, description, status} = this.state;
-      this.props.addList(title, description, status)
+      const {title, description} = this.state;
+      this.props.addMovie(title, description)
+
       this.setState({
          modal: false,
       })
    
    }
+
 
    changeStar = () => {
       this.setState({
@@ -66,17 +54,7 @@ export default class Header extends Component {
       })
    }
 
-   renderDragMessage = (isDragActive, isDragReject) =>{
-      if(!isDragActive){
-         return <UploadMessage>Arraste arquivos aqui !</UploadMessage>
-      }
 
-      if(isDragReject){
-         return <UploadMessage type="error"> Arquivo não suportado</UploadMessage>
-      }
-
-      return <UploadMessage type="sucess">Solte os arquivos aqui</UploadMessage>
-   }
 
    openModal = () => (
       <Overlay>
@@ -93,16 +71,23 @@ export default class Header extends Component {
 
                <Label>
                   Nome:
-                  <InputModal type="text" name="title" autoFocus onChange={this.changeTitle}/>
+                  <InputModal type="text" name="title" autoFocus onChange={this.changeValues}/>
                </Label>
                <Label>
                   Descrição:
-                  <InputModal type="text" name="description" onChange={this.changeDescription}/>
+                  <Description type="text" name="description" onChange={this.changeValues}/>
                </Label>
                <Label>
                   Status:
-                  <InputModal type="text" name="status" onChange={this.changeStatus}/>
+                  <StatusOptions>
+                     <InputModal type="radio" name="status"/>Já Visto
+                  </StatusOptions>
                </Label>
+               <LabelStatus>
+                  <StatusOptions>
+                     <InputModal type="radio" name="status"/>Quero ver
+                  </StatusOptions>
+               </LabelStatus>
 
                <Dropzone accept="image/*" onDropAccepted={this.props.handleUpload}>
                   {({ getRootProps, getInputProps, isDragActive, isDragReject }) => (
@@ -112,7 +97,6 @@ export default class Header extends Component {
                         isDragReject={isDragReject}
                      >
                         <input {...getInputProps()}/>
-                        {this.renderDragMessage(isDragActive, isDragReject)}
                      </DropContainer>
                   )}
                </Dropzone>
@@ -139,8 +123,9 @@ export default class Header extends Component {
 
 
   render() {
-   
 
+   const {handleStateScreen} = this.props;
+   const {modal} = this.state;
 
     return(
       <BlockHeader>
@@ -150,15 +135,15 @@ export default class Header extends Component {
                <p onClick={this.openMenu}>categorias</p>
                {this.state.menu && (
                   <div>
-                     <p onClick={() => this.props.handleStateScreen('list')}>Quero ver</p>
-                     <p onClick={() => this.props.handleStateScreen('watched')}>Já visto</p>
+                     <p onClick={() => handleStateScreen('list')}>Quero ver</p>
+                     <p onClick={() => handleStateScreen('watched')}>Já visto</p>
                   </div>
                )}
             </Menu>
   
             <ButtonFilmes onClick={() => this.setState({ modal: true, })}>adicionar filme</ButtonFilmes>
          </div>
-         {this.state.modal && this.openModal()}
+         {modal && this.openModal()}
       </BlockHeader>
     );
   }

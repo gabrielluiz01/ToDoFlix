@@ -110,45 +110,36 @@ const Description = styled.p `
 export default class List extends Component {
 
   state = {
-    list: {
-      images: [ ],
-      title: [ ],
-      description: [ ],
-      status: [],
-    }
+    images: [],
+    title: [this.props.title],
+    description: [this.props.description],
+  }
+
+  log = (ev) => {
+    console.log(this.state.title)
+    console.log(this.state.description)
   }
 
 
 
   render() {
-
-
+    
+    const {title, description} = this.state;
 
     return(
-      <MyList>
+      <div>
         <h1>Minha lista:</h1>
-        <ListBlock>
-          <BlockFilmes>
-            <ImageMovie src={require('../../assets/jurassic-park.webp')}/>
-            <Status>
-              <p>Quero ver</p>
-            </Status>
-              <Title>Jurassic Park: O Mundo Perdido</Title>
-              <Description>John Hammond chama o teórico do caos Ian Malcolm à sua casa para dar algumas notícias aterradoras: enquanto quase tudo em Jurassic Park foi destruído, seus engenheiros parecem ter um segundo local, onde outros dinossauros estão escondidos. Aparentemente, os dinossauros na segunda ilha estão vivos e bem e até se acasalando. Hammond quer que Malcolm observe e documente as criaturas antes que mercenários cheguem até eles.</Description>
-          </BlockFilmes>
+        
+        <div className="block-filmes">
+          <img src={require('../../assets/bacurau.jpg')}/>
+          <div>
+          {this.props.title}
+          </div>
+          {this.props.description}
+        </div>
 
-          <BlockFilmes>
-            <ImageMovie src={require('../../assets/fratura.jpg')}/>
-            <JaVisto>
-              <p>Ja Visto</p>
-            </JaVisto>
-              <Title>Fratura</Title>
-              <Description>
-                Dirigindo pelo país, Ray (Sam Worthington), sua esposa e filha param em uma área de descanso da estrada, onde a filha cai e quebra o braço. Depois de uma corrida frenética para o hospital e um confronto com a enfermeira, Ray finalmente consegue ser atendido.
-              </Description>
-          </BlockFilmes>
-        </ListBlock>
-      </MyList>
-    );
+        <button onClick={this.log}>LOG</button>
+      </div>
+    )
   }
 }

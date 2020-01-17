@@ -1,4 +1,4 @@
-import styled, {css} from "styled-components";
+import styled from "styled-components";
 
 export const BlockHeader = styled.header `
    display: flex;
@@ -60,7 +60,7 @@ export const Menu = styled.div `
    }
    @keyframes fadeIn{
       to{
-         margin-top: 2vh;
+         margin-top: 1vh;
       }
       0% { opacity: 0% ;}
       100% {  opacity: 100%; }
@@ -167,7 +167,14 @@ export const InputModal = styled.input `
    border-radius: 10px;
    border: none;
    background: #F4F6F8;
-   border: 2px solid #000;
+`;
+
+export const Description = styled.textarea`
+   margin-top: 0.5rem;
+   padding : 0.4rem 0.5rem;
+   border-radius: 10px;
+   border: none;
+   background: #F4F6F8;
 `;
 
 export const SpanButtons = styled.span `
@@ -195,14 +202,6 @@ export const ButtonSend = styled.button `
    cursor: pointer;
 `;
 
-export const dragActive = css`
-   border-color: #78e5d5;
-`;
-
-export const dragReject = css`
-   border-color: #e57878;
-`;
-
 export const DropContainer = styled.div.attrs({
    className: 'dropzone'
 })`
@@ -211,26 +210,11 @@ export const DropContainer = styled.div.attrs({
    border-radius: 10px;
    border: none;
    background: #F4F6F8;
-   border: 2px dashed #ddd;
-   transition: height 0.2s ease;
+   cursor: pointer; 
+   height: 3rem;
 
-
-   ${props => props.isDragActive && dragActive};
-   ${props => props.isDragReject && dragReject};
 `;
-export const messageColors = {
-   default: '#999',
-   error: '#e57878',
-   sucess: '#78e5d5',
-}
 
-export const UploadMessage = styled.h2`
-   display: flex;
-   color: ${props => messageColors[props.type || 'default']};
-   justify-content: center;
-   align-items: center;
-   padding: 15px 0;
-`;
 export const ButtonSendImage = styled.button `
    width: 150px;
    border-radius: 5px;
@@ -240,4 +224,11 @@ export const ButtonSendImage = styled.button `
    color : #fff;
    cursor: pointer;
    align-self: flex-end;
+`;
+
+export const StatusOptions = styled.span`
+
+`;
+
+export const LabelStatus = styled.label`
 `;

@@ -23,24 +23,17 @@ export default class App extends Component{
 
   }
 
-  handleUpload = () => {
-    const {uploadedFiles} = this.state;
 
-    this.setState({
-      uploadedFiles: this.state.uploadedFiles.concat(uploadedFiles)
-    })
-    console.log(this.state.uploadedFiles)
-  }
 
-  addList = (title, description, status) => {
+  addMovie = (title, description, status) => {
     this.setState({
       list:{
         title: title,
         description: description,
-        status: status,
       }
     })
   }
+
 
 
 
@@ -50,7 +43,7 @@ export default class App extends Component{
         return <Watched/>
       case 'list':
         default:
-        return <List addList={this.addList}/>
+        return <List title={this.state.list.title} description={this.state.list.description}/>
     }
   }
 
@@ -66,7 +59,7 @@ export default class App extends Component{
   render(){
     return (
       <div className="App">
-        <Header  handleStateScreen={this.handleStateScreen} addList={this.addList} handleUpload={this.handleUpload}/>
+        <Header  handleStateScreen={this.handleStateScreen} addMovie={this.addMovie} />
         <div className="banner">
           <img src={require('./assets/banner.jpg')}/>
         </div>
