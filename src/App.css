@@ -26,10 +26,3 @@
     height: 90%;
   }
 }
-
-.block-filmes{
-  width: 30%;
-  background-color: red;
-  display: flex;
-  flex-direction: column;
-}

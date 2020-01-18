@@ -159,6 +159,7 @@ export const Claquete = styled.img `
 export const Star = styled.img `
    width: 25px;
    background: #000;
+   cursor: pointer;
 `;
 
 export const InputModal = styled.input `
@@ -226,9 +227,22 @@ export const ButtonSendImage = styled.button `
    align-self: flex-end;
 `;
 
-export const StatusOptions = styled.span`
-
+export const Status = styled.div `
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  background: #75a9a4;
+  color: #fff;
+  margin-bottom: 1rem;
 `;
 
-export const LabelStatus = styled.label`
+export const JaVisto = styled.div `
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  background: #F0C18B;
+  color: #fff;
+  margin-bottom: 1rem;
 `;

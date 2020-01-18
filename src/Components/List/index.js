@@ -56,29 +56,11 @@ const Note = styled.div `
   color: #fff;
 `;
 
-const Status = styled.div `
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 300px;
-  background: #75a9a4;
-  color: #fff;
-  margin-bottom: 1rem;
-`;
 
-const JaVisto = styled.div `
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 300px;
-  background: #F0C18B;
-  color: #fff;
-  margin-bottom: 1rem;
-`;
 
 const ImageMovie = styled.img `
-  width: 300px;
-  height: 200px;
+  width: 200px;
+  height: 220px;
 `;
 
 const Title = styled.p `
@@ -131,11 +113,12 @@ export default class List extends Component {
         <h1>Minha lista:</h1>
         
         <div className="block-filmes">
-          <img src={require('../../assets/bacurau.jpg')}/>
+          <ImageMovie src={require('../../assets/bacurau.jpg')}/>
+          {this.props.status}  
           <div>
-          {this.props.title}
+            <Title>{this.props.title}</Title>
           </div>
-          {this.props.description}
+            <Description>{this.props.description}</Description>
         </div>
 
         <button onClick={this.log}>LOG</button>

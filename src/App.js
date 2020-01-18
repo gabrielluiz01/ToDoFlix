@@ -30,9 +30,11 @@ export default class App extends Component{
       list:{
         title: title,
         description: description,
+        status: status,
       }
     })
   }
+
 
 
 
@@ -43,7 +45,7 @@ export default class App extends Component{
         return <Watched/>
       case 'list':
         default:
-        return <List title={this.state.list.title} description={this.state.list.description}/>
+        return <List title={this.state.list.title} description={this.state.list.description} status={this.state.list.status}/>
     }
   }
 
@@ -63,10 +65,9 @@ export default class App extends Component{
         <div className="banner">
           <img src={require('./assets/banner.jpg')}/>
         </div>
-        {this.renderScreen()}         
-        
-                
+        {this.renderScreen()}       
 
+        
       </div>
     );
   }

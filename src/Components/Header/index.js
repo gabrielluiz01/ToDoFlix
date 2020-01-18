@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import '../../App.css'
 import Dropzone from 'react-dropzone';
-import {BlockHeader, ButtonFilmes, Menu, Overlay, Modal, Form, Label, Claquete, Star, InputModal, SpanButtons, ButtonCancel, ButtonSend, dragActive, dragReject, DropContainer, ButtonSendImage, Description, StatusOptions, LabelStatus} from './styles'
-
+import {BlockHeader, ButtonFilmes, Menu, Overlay, Modal, Form, Label, Claquete, Star, InputModal, SpanButtons, ButtonCancel, ButtonSend, dragActive, dragReject, DropContainer, ButtonSendImage, Description, Status, JaVisto} from './styles'
 
 
 export default class Header extends Component {
@@ -11,10 +10,16 @@ export default class Header extends Component {
    state = {
       menu: false,
       modal: false,
-      star: <Star src={require('../../assets/estrela-cinza.svg')}/>,
+      star1: false,
+      star2: <Star src={require('../../assets/estrela-cinza.svg')}/>,
+      star3: <Star src={require('../../assets/estrela-cinza.svg')}/>,
+      star4: <Star src={require('../../assets/estrela-cinza.svg')}/>,
+      star5: <Star src={require('../../assets/estrela-cinza.svg')}/>,
+      note: null,
       title: [],
       description: [],
       status: [],
+      image: [],
    }
 
 
@@ -27,34 +32,64 @@ export default class Header extends Component {
    }
 
 
-   changeValues = (ev) => {
-      this.setState({
-         [ev.target.name]: ev.target.value,
-      })   
-   }
-
 
 
 
    handleSubmit = (ev) => {
       ev.preventDefault()
-      const {title, description} = this.state;
-      this.props.addMovie(title, description)
+      const {title, description, status} = this.state;
+      this.props.addMovie(title, description, status)
+
 
       this.setState({
          modal: false,
+         images: ev.target.files,
+         
       })
+      
    
    }
 
 
-   changeStar = () => {
+   changeWatched = () => {
       this.setState({
-         star: <Star src={require('../../assets/estrela.svg')}/>
+         status: <JaVisto>Já visto</JaVisto>
+      })
+   }
+
+   changeWatch = () => {
+      this.setState({
+         status: <Status>Quero ver</Status>
       })
    }
 
 
+   changeValues = (ev) => {
+      this.setState({
+         [ev.target.name]: ev.target.value
+      })
+      
+   }
+
+
+   uploadFiles = (ev) => {
+      this.setState({
+         images: [ev.target.files[0]]
+      })
+      console.log(ev.target.files[0])
+   }
+
+   changeStar1 = () => {
+      this.setState({
+         star1: false,
+      })
+   }
+
+   changeNotes = () => {
+      
+      console.log('passei voadasso')
+
+   }
 
    openModal = () => (
       <Overlay>
@@ -79,37 +114,49 @@ export default class Header extends Component {
                </Label>
                <Label>
                   Status:
-                  <StatusOptions>
-                     <InputModal type="radio" name="status"/>Já Visto
-                  </StatusOptions>
+                  <span>
+                     <InputModal type="radio" name="status" onClick={this.changeWatched}/>Já Visto
+                  </span>
                </Label>
-               <LabelStatus>
-                  <StatusOptions>
-                     <InputModal type="radio" name="status"/>Quero ver
-                  </StatusOptions>
-               </LabelStatus>
+               <Label>
+                  <span>
+                     <InputModal type="radio" name="status" onClick={this.changeWatch}/>Quero ver
+                  </span>
+               </Label>
 
-               <Dropzone accept="image/*" onDropAccepted={this.props.handleUpload}>
-                  {({ getRootProps, getInputProps, isDragActive, isDragReject }) => (
-                     <DropContainer
-                        {...getRootProps()}
-                        isDragActive={isDragActive}
-                        isDragReject={isDragReject}
-                     >
-                        <input {...getInputProps()}/>
-                     </DropContainer>
-                  )}
-               </Dropzone>
-               <ButtonSendImage onDropAccepted={() => {}}>Adicionar Imagem</ButtonSendImage>
+               <InputModal type='file' onChange={this.uploadFiles}/>
+               <ButtonSendImage type="file">Adicionar Imagem</ButtonSendImage>
 
                <Label>
                   Nota:
                   <span>
-                     {this.state.star}
-                     {this.state.star}
-                     {this.state.star}
-                     {this.state.star}
-                     {this.state.star}
+                    {this.state.star1 === true ? (
+                       <Star src={require('../../assets/estrela.svg')} onClick={this.changeNotes, () => this.setState({ star1: false, star2: false, star3: false, star4: false, star5: false })}/>
+                    ) : (
+                       <Star src={require('../../assets/estrela-cinza.svg')} onClick={this.changeNotes, () => this.setState({ star1: true })}/>
+                    )}
+
+                     {this.state.star2 === true ? (
+                       <Star src={require('../../assets/estrela.svg')} onClick={this.changeNotes, () => this.setState({ star2: false,})}/>
+                     ) : (
+                       <Star src={require('../../assets/estrela-cinza.svg')} onClick={ this.changeNotes,() => this.setState({ star2: true, star1: true, })}/>
+                     )}
+                     {this.state.star3 === true ? (
+                       <Star src={require('../../assets/estrela.svg')} onClick={ this.changeNotes,() => this.setState({ star3: false })}/>
+                     ) : (
+                       <Star src={require('../../assets/estrela-cinza.svg')} onClick={ this.changeNotes,() => this.setState({ star3: true, star1: true, star2: true, })}/>
+                     )}
+                    {this.state.star4 === true ? (
+                       <Star src={require('../../assets/estrela.svg')} onClick={ this.changeNotes,() => this.setState({ star4: false })}/>
+                     ) : (
+                       <Star src={require('../../assets/estrela-cinza.svg')} onClick={ this.changeNotes,() => this.setState({ star4: true , star3: true, star1: true, star2: true, })}/>
+                     )}
+                     {this.state.star5 === true ? (
+                       <Star src={require('../../assets/estrela.svg')} onClick={this.changeNotes, () => this.setState({ star5: false })}/>
+                     ) : (
+                       <Star src={require('../../assets/estrela-cinza.svg')} onClick={this.changeNotes, () => this.setState({ star5: true, star4: true , star3: true, star1: true, star2: true, })}/>
+                     )}
+
                   </span>
                </Label>
                <SpanButtons>
@@ -142,8 +189,10 @@ export default class Header extends Component {
             </Menu>
   
             <ButtonFilmes onClick={() => this.setState({ modal: true, })}>adicionar filme</ButtonFilmes>
+            <button onClick={() => console.log(this.state.image, this.state.title, this.state.description)}>LOGIMAGE</button>
          </div>
          {modal && this.openModal()}
+         {this.state.star1}
       </BlockHeader>
     );
   }
