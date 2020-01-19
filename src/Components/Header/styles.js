@@ -231,7 +231,7 @@ export const Status = styled.div `
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100px;
+  width: 200px;
   background: #75a9a4;
   color: #fff;
   margin-bottom: 1rem;
@@ -241,7 +241,7 @@ export const JaVisto = styled.div `
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100px;
+  width: 200px;
   background: #F0C18B;
   color: #fff;
   margin-bottom: 1rem;

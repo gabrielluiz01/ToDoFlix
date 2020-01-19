@@ -4,9 +4,6 @@ import List from './Components/List'
 import Watched from './Components/Watched'
 import Header from './Components/Header'
 import styled from 'styled-components';
-import fratura from './assets/fratura.jpg'
-import eli from './assets/eli.jpg'
-
 
 
 export default class App extends Component{

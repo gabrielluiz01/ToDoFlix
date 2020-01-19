@@ -112,14 +112,21 @@ export default class List extends Component {
       <div>
         <h1>Minha lista:</h1>
         
-        <div className="block-filmes">
+        <BlockFilmes>
           <ImageMovie src={require('../../assets/bacurau.jpg')}/>
           {this.props.status}  
-          <div>
-            <Title>{this.props.title}</Title>
-          </div>
-            <Description>{this.props.description}</Description>
-        </div>
+            <Title>{this.props.title.map(title =>{
+              return(
+                <li key={title}>{title}</li>
+              )
+            })}</Title>
+
+            <Description>{this.props.description.map(description => {
+              return(
+                <p>{description}</p>
+              )
+            })}</Description>
+        </BlockFilmes>
 
         <button onClick={this.log}>LOG</button>
       </div>

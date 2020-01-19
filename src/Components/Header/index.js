@@ -11,14 +11,10 @@ export default class Header extends Component {
       menu: false,
       modal: false,
       star1: false,
-      star2: <Star src={require('../../assets/estrela-cinza.svg')}/>,
-      star3: <Star src={require('../../assets/estrela-cinza.svg')}/>,
-      star4: <Star src={require('../../assets/estrela-cinza.svg')}/>,
-      star5: <Star src={require('../../assets/estrela-cinza.svg')}/>,
-      note: null,
+      note: 0,
       title: [],
       description: [],
-      status: [],
+      descriptionValue: '',
       image: [],
    }
 
@@ -44,10 +40,8 @@ export default class Header extends Component {
       this.setState({
          modal: false,
          images: ev.target.files,
-         
+        description: [...this.state.description, this.state.descriptionValue] 
       })
-      
-   
    }
 
 
@@ -64,11 +58,16 @@ export default class Header extends Component {
    }
 
 
-   changeValues = (ev) => {
+   changeTitle = (ev) => {
       this.setState({
-         [ev.target.name]: ev.target.value
+         title: [...  this.state.title, ev.target.value]
       })
-      
+   }
+
+   changeDescription = (ev) => {
+      this.setState({
+         descriptionValue: ev.target.value,
+      })
    }
 
 
@@ -85,13 +84,17 @@ export default class Header extends Component {
       })
    }
 
-   changeNotes = () => {
-      
-      console.log('passei voadasso')
-
+   getNotes = () => {
+      this.setState({
+         star1: true,
+         note: this.state.note + 1,
+      })
    }
 
    openModal = () => (
+      
+
+
       <Overlay>
          <Modal>
             
@@ -106,11 +109,11 @@ export default class Header extends Component {
 
                <Label>
                   Nome:
-                  <InputModal type="text" name="title" autoFocus onChange={this.changeValues}/>
+                  <InputModal type="text" name="title" autoFocus onChange={this.changeTitle}/>
                </Label>
                <Label>
                   Descrição:
-                  <Description type="text" name="description" onChange={this.changeValues}/>
+                  <Description type="text" name="description" onChange={this.changeDescription}/>
                </Label>
                <Label>
                   Status:
@@ -129,34 +132,13 @@ export default class Header extends Component {
 
                <Label>
                   Nota:
-                  <span>
-                    {this.state.star1 === true ? (
-                       <Star src={require('../../assets/estrela.svg')} onClick={this.changeNotes, () => this.setState({ star1: false, star2: false, star3: false, star4: false, star5: false })}/>
-                    ) : (
-                       <Star src={require('../../assets/estrela-cinza.svg')} onClick={this.changeNotes, () => this.setState({ star1: true })}/>
-                    )}
-
-                     {this.state.star2 === true ? (
-                       <Star src={require('../../assets/estrela.svg')} onClick={this.changeNotes, () => this.setState({ star2: false,})}/>
+                  <span>     
+                           
+                     {this.state.star1 === true ? (
+                        <Star src={require('../../assets/estrela.svg')} onClick={this.setState({star1: false })}/>
                      ) : (
-                       <Star src={require('../../assets/estrela-cinza.svg')} onClick={ this.changeNotes,() => this.setState({ star2: true, star1: true, })}/>
+                        <Star src={require('../../assets/estrela-cinza.svg')} onClick={this.getNotes}/>
                      )}
-                     {this.state.star3 === true ? (
-                       <Star src={require('../../assets/estrela.svg')} onClick={ this.changeNotes,() => this.setState({ star3: false })}/>
-                     ) : (
-                       <Star src={require('../../assets/estrela-cinza.svg')} onClick={ this.changeNotes,() => this.setState({ star3: true, star1: true, star2: true, })}/>
-                     )}
-                    {this.state.star4 === true ? (
-                       <Star src={require('../../assets/estrela.svg')} onClick={ this.changeNotes,() => this.setState({ star4: false })}/>
-                     ) : (
-                       <Star src={require('../../assets/estrela-cinza.svg')} onClick={ this.changeNotes,() => this.setState({ star4: true , star3: true, star1: true, star2: true, })}/>
-                     )}
-                     {this.state.star5 === true ? (
-                       <Star src={require('../../assets/estrela.svg')} onClick={this.changeNotes, () => this.setState({ star5: false })}/>
-                     ) : (
-                       <Star src={require('../../assets/estrela-cinza.svg')} onClick={this.changeNotes, () => this.setState({ star5: true, star4: true , star3: true, star1: true, star2: true, })}/>
-                     )}
-
                   </span>
                </Label>
                <SpanButtons>
@@ -173,7 +155,7 @@ export default class Header extends Component {
 
    const {handleStateScreen} = this.props;
    const {modal} = this.state;
-
+   
     return(
       <BlockHeader>
          <h1>ToDoFlix</h1>
