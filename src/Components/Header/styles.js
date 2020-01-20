@@ -37,6 +37,23 @@ export const ButtonFilmes = styled.button `
    color: #fff;
    cursor: pointer;
    margin: 0 2rem;
+   @media(max-width: 768px){
+      display: none;
+   }
+`;
+
+export const ButtonFilmesResp = styled.button`
+   padding: 0.3rem 0.6rem;
+   border: none;
+   background: #ce1b60;
+   color: #fff;
+   cursor: pointer;
+   margin: 0 2rem;
+   display: none;
+
+   @media(max-width: 768px){
+      display: block;
+   }
 `;
 
 export const Menu = styled.div `
@@ -81,6 +98,7 @@ export const QueroVer = styled.div `
   background: #75a9a4;
   color: #fff;
   margin-bottom: 1rem;
+  cursor: pointer;
 `;
 export const JaVisto = styled.div `
   display: flex;
@@ -90,6 +108,7 @@ export const JaVisto = styled.div `
   background: #F0C18B;
   color: #fff;
   margin-bottom: 1rem;
+  cursor: pointer;
 `;
 
 
@@ -118,6 +137,9 @@ export const Modal= styled.div `
    animation: fadeIn 1s ease-in-out;
    z-index: 99;
 
+   @media(max-width: 768px){
+      height: 90vh;
+   }
    @media(max-width: 425px){
       min-width: 90%;
       
@@ -130,6 +152,10 @@ export const Form = styled.form  `
    justify-content: space-evenly;
    width: 55%;
    height: 90%;
+
+   @media(max-width: 768px){
+      height: 90vh;
+   }
 
    @media(max-width: 425px){
       width: 100%;
@@ -146,10 +172,10 @@ export const Form = styled.form  `
       align-items: center;
       width: 100%;
    }
-   p{
-      font-size: 30px;
-      color: #6b6b6b70;
-   }
+`;
+export const CloseModal = styled.p`
+   font-size: 30px;
+   color: #6b6b6b70;
 `;
 
 export const Label = styled.label `
@@ -238,9 +264,34 @@ export const LabelUpload = styled.label`
    display: flex;
    flex-direction: column;
    justify-content: flex-start;
+
+   @media(max-width: 768px){
+      text-align: left;
+      width: 100%;
+   }
 `;
 
-export const ButtonSendImage = styled.button `
-   width: 120px;
+export const ButtonUpload = styled.h3`
+   width: 150px;
+   background: #75A9A4;
+   padding: 0.5rem;
+   border-radius: 5px;
+   color: #FFF;
    align-self: flex-end;
+
+   @media(max-width: 768px){
+      align-self: flex-start;
+   }
+`;
+
+export const LabelStatus = styled.label`
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   text-align: left;
+`;
+export const SpanStatus = styled.span`
+   display: flex;
+   justify-content: space-evenly;
+   width: 100%;
 `;

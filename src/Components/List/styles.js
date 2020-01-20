@@ -25,6 +25,7 @@ export const ListBlock = styled.div `
 export const BlockFilmes = styled.div `
   position: relative;
   display: flex;
+  align-items: center;
   flex-direction: column;
   width: 25vw;
   padding: 1rem 0;
@@ -42,17 +43,6 @@ export const BlockFilmes = styled.div `
 
 
 
-export const ImageMovie = styled.img `
-  width: 200px;
-  height: 220px;
-  cursor: pointer;
-  &:hover{
-    width: 220px;
-    height: 240px;
-    transition: height, width 1s ease;
-  }
-  
-`;
 
 export const Title = styled.p `
   font-size: 20px;
@@ -60,14 +50,12 @@ export const Title = styled.p `
   margin-bottom: 0.5rem;
   min-width: 70%;
   text-align: left;
+  cursor: pointer;
 
   @media(max-width: 768px){
     max-width: 100%;
-    text-align: left
-  }
-  @media(max-width: 375px){
-    width: 100%;
-    text-align: left;
+    display: flex;
+    justify-content: center;
   }
 `;
 
@@ -75,7 +63,13 @@ export const Description = styled.p `
   width: 70%;
   text-align: left;
   color: #94A2AC;
-
+  cursor: pointer;
+  
+  @media(max-width: 768px){
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+  }
   @media(max-width: 375px){
     width: 100%;
   }
@@ -84,7 +78,7 @@ export const Description = styled.p `
 export const Notes = styled.div`
   position: absolute;
   top: 0vh;
-  right: 10vw;
+  right: 5vw;
   width: 40px;
   height: 40px;
   background: #75A9A4;
@@ -104,5 +98,16 @@ export const Notes = styled.div`
   }
   @media(max-width: 350px){
     right: 4vw;
+  }
+`;
+export const Block = styled.div`
+  width: 20vw;
+
+  img{
+    width: 200px;
+    height: 240px;
+  }
+  @media(max-width: 768px){
+    width: 100%;
   }
 `;

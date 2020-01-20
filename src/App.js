@@ -10,28 +10,29 @@ export default class App extends Component{
 
   state = {
     currentScreen: 'list',
-    list:{
-      title: [],
-      description: [],
-      status: [],
-      image: [],
-      note: '', 
-    },
+    lista:[
+      {
+      title: '',
+      description: '',
+      status: '',
+      note: '',   
+    }
+  ],
+    imagePreviewUrl: null,
     movie: '',
-    uploadedFiles: [],
-
   }
 
 
 
-  addMovie = (title, description, status, note, titleValue) => {
+  addMovie = (title, description, status, note, imagePreviewUrl) => {
     this.setState({
-      list:{
-        title: title,
-        description: description,
-        status: status,
-        note: note,
-      }
+      lista:[{
+          title: title,
+          description: description,
+          status: status,
+          note: note,
+        }],
+        imagePreviewUrl: imagePreviewUrl,
     })
   }
 
@@ -47,10 +48,10 @@ export default class App extends Component{
   renderScreen = () => {
     switch(this.state.currentScreen){
       case 'watched':
-        return <Watched movie={this.state.movie}/>
+        return <Watched movie={this.state.movie} image={this.state.imagePreviewUrl} note={this.state.lista.note}/>
       case 'list':
         default:
-        return <List title={this.state.list.title} description={this.state.list.description} status={this.state.list.status} note={this.state.list.note} Watched={this.Watched}/>
+        return <List  lista={this.state.lista} Watched={this.Watched} image={this.state.imagePreviewUrl}/>
     }
   }
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import '../../App.css'
 import Dropzone from 'react-dropzone';
-import {BlockHeader, ButtonFilmes, Menu, Overlay, Modal, Form, Label, Claquete, Star, InputModal, SpanButtons, ButtonCancel, ButtonSend, ButtonSendImage, Description, QueroVer, JaVisto, InputUpload, LabelUpload} from './styles'
+import {BlockHeader, ButtonFilmes, Menu, Overlay, Modal, Form, Label, Claquete, Star, InputModal, SpanButtons, ButtonCancel, ButtonSend, ButtonUpload, Description, QueroVer, JaVisto, InputUpload, LabelUpload, CloseModal, LabelStatus, SpanStatus, ButtonFilmesResp} from './styles'
 
 
 export default class Header extends Component {
@@ -15,12 +15,11 @@ export default class Header extends Component {
       star3: false,
       star4: false,
       star5: false,
-      note: 0,
-      titleValue: '',
+      note: [],
       title: [],
       description: [],
-      image: [],
-      status: '',
+      status: [],
+      imagePreviewUrl: null,
    }
 
 
@@ -38,8 +37,8 @@ export default class Header extends Component {
 
    handleSubmit = (ev) => {
       ev.preventDefault()
-      const {title, description, status, note} = this.state;
-      this.props.addMovie(title, description, status, note, this.state.titleValue)
+      const {title, description, status, note, imagePreviewUrl} = this.state;
+      this.props.addMovie(title, description, status, note, imagePreviewUrl)
       this.setState({
          modal: false,
          images: ev.target.files,
@@ -48,6 +47,22 @@ export default class Header extends Component {
       
 
    }
+
+   handleImageChange(e) {
+      e.preventDefault();
+  
+      let reader = new FileReader();
+      let file = e.target.files[0];
+  
+      reader.onloadend = () => {
+        this.setState({
+          file: file,
+          imagePreviewUrl: reader.result
+        });
+      }
+  
+      reader.readAsDataURL(file)
+    }
 
 
    changeWatched = () => {
@@ -81,7 +96,7 @@ export default class Header extends Component {
             <Form onSubmit={this.handleSubmit}>
                <div>
                   <h1>Adicionar um novo Filme:</h1>
-                  <p onClick={() => this.setState({ modal: false, })}>&#9747;</p>
+                  <CloseModal onClick={() => this.setState({ modal: false, })}>&#9747;</CloseModal>
                </div>
 
                <Label>
@@ -92,21 +107,17 @@ export default class Header extends Component {
                   Descrição:
                   <Description type="text" name="description" onChange={this.changeValues}/>
                </Label>
-               <Label>
+               <LabelStatus>
                   Status:
-                  <span>
-                     <InputModal type="radio" name="status" onClick={this.changeWatched}/>Já Visto
-                  </span>
-               </Label>
-               <Label>
-                  <span>
-                     <InputModal type="radio" name="status" onClick={this.changeWatch}/>Quero ver
-                  </span>
-               </Label>
+                  <SpanStatus>
+                     <input type="radio" name="status" onClick={this.changeWatched}/>Já Visto
+                     <input type="radio" name="status" onClick={this.changeWatch}/>Quero ver
+                  </SpanStatus>
+               </LabelStatus>
                <LabelUpload>
-                  {this.state.image}
-                  <InputUpload type='file' onChange={(ev) => this.setState({ image: ev.target.value })} name="image"/>
-                  <ButtonSendImage>Adicionar Imagem</ButtonSendImage>
+                  Imagem de exibição:
+                  <InputUpload type='file' onChange={(e) => this.handleImageChange(e)} name="image"/>
+                  <ButtonUpload>Adicionar Imagem</ButtonUpload>
                </LabelUpload>
 
 
@@ -179,6 +190,8 @@ export default class Header extends Component {
 
 
   render() {
+   {this.state.imagePreviewUrl = (<img src={this.state.imagePreviewUrl}/>)}
+
 
    const {handleStateScreen} = this.props;
    const {modal} = this.state;
@@ -198,9 +211,9 @@ export default class Header extends Component {
             </Menu>
   
             <ButtonFilmes onClick={() => this.setState({ modal: true, })}>adicionar filme</ButtonFilmes>
+            <ButtonFilmesResp onclick={() => this.setState({ modal: true })}>add filmes</ButtonFilmesResp>
          </div>
          {modal && this.openModal()}
-         {this.state.title}
       </BlockHeader>
     );
   }
