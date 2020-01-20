@@ -207,14 +207,14 @@ export const Claquete = styled.img `
 `;
 export const Star = styled.img `
    width: 25px;
-   background: #000;
+
    cursor: pointer;
 `;
 
 export const InputModal = styled.input `
    width: 100%;
    margin-top: 0.5rem;
-   border: 2px solid #000;
+   border: none;
    padding : 0.4rem 0.5rem;
    border-radius: 10px;
    background: #F4F6F8;
@@ -253,7 +253,7 @@ export const Description = styled.textarea`
    margin-top: 0.5rem;
    padding : 0.4rem 0.5rem;
    border-radius: 10px;
-   border: 2px solid #000;
+   border: none;
    background: #F4F6F8;
 `;
 

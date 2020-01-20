@@ -20,18 +20,19 @@ export default class List extends Component {
   changeStatus = () => {
     this.props.Watched(this.state.movie)
     this.setState({
-      movie:  <BlockFilmes>
-      <Notes>
-        {this.props.note}
-      </Notes>
-        {this.props.image}
-      <JaVisto>Já vi</JaVisto>  
-      <div>
-        <Title>{this.props.title}</Title>
-
-        <Description>{this.props.description}</Description>
-      </div>
-    </BlockFilmes>
+      movie:  <ListBlock>
+         {this.props.lista.map((items) => {
+            return(
+              <BlockFilmes>
+                <Notes>{items.note}</Notes>
+                  <Block>{this.props.image}</Block>
+                  <span onClick={this.changeStatus}>{items.status}</span>
+                <Title onClick={this.changeStatus}>{items.title}</Title>
+                <Description>{items.description}</Description>
+              </BlockFilmes>
+            )
+          })}
+    </ListBlock>
     })
   }
 
