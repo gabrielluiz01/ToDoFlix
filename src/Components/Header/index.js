@@ -211,7 +211,7 @@ export default class Header extends Component {
             </Menu>
   
             <ButtonFilmes onClick={() => this.setState({ modal: true, })}>adicionar filme</ButtonFilmes>
-            <ButtonFilmesResp onclick={() => this.setState({ modal: true })}>add filmes</ButtonFilmesResp>
+            <ButtonFilmesResp onClick={() => this.setState({ modal: true, })}>add filmes</ButtonFilmesResp>
          </div>
          {modal && this.openModal()}
       </BlockHeader>

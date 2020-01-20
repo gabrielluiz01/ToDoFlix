@@ -37,6 +37,7 @@ export const ButtonFilmes = styled.button `
    color: #fff;
    cursor: pointer;
    margin: 0 2rem;
+   
    @media(max-width: 768px){
       display: none;
    }
