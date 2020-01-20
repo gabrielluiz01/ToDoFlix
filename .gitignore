@@ -10,6 +10,8 @@
 
 # production
 /build
+yarn global add serve
+serve -s build
 
 # misc
 .DS_Store
