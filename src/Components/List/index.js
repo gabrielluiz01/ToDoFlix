@@ -3,6 +3,8 @@ import '../../App.css'
 import styled, { css }from 'styled-components';
 import {MyList, ListBlock, BlockFilmes, Notes, ImageMovie, Title, Description} from './styles'
 import {JaVisto, QueroVer} from '../Header/styles'
+import Corra from '../../assets/corra.jpg'
+import Bacurau from '../../assets/bacurau.jpg'
 
 
 
@@ -22,7 +24,7 @@ export default class List extends Component {
       <Notes>
         {this.props.note}.0
       </Notes>
-      <ImageMovie src={require('../../assets/bacurau.jpg')} onClick={this.changeStatus}/>
+      <ImageMovie src={require()} onClick={this.changeStatus}/>
       <JaVisto>Já vi</JaVisto>  
       <div>
         <Title>{this.props.title}</Title>
@@ -42,14 +44,18 @@ export default class List extends Component {
         <ListBlock>
           <BlockFilmes>
             <Notes>
-              {this.props.note}.0
+              5.0
             </Notes>
-            <ImageMovie src={require('../../assets/bacurau.jpg')} onClick={this.changeStatus}/>
-            {this.props.status}  
+            <ImageMovie src={Corra} onClick={this.changeStatus}/>
+            <JaVisto>Já vi</JaVisto>  
             <div>
-              <Title>{this.props.title}</Title>
+              <Title>
+                Corra
+              </Title>
 
-              <Description>{this.props.description}</Description>
+              <Description>
+                Um jovem fotógrafo descobre um segredo sombrio quando conhece os pais aparentemente amigáveis da sua namorada.
+              </Description>
             </div>
           </BlockFilmes>
 
@@ -57,7 +63,7 @@ export default class List extends Component {
             <Notes>
               {this.props.note}.0
             </Notes>
-            <ImageMovie src={require('../../assets/corra.jpg')}/>
+            <ImageMovie src={Bacurau}/>
             {this.props.status}
             <div>
               <Title>{this.props.title}</Title>

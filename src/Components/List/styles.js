@@ -26,7 +26,7 @@ export const BlockFilmes = styled.div `
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 30vw;
+  width: 25vw;
   padding: 1rem 0;
 
   @media(max-width: 768px){
@@ -39,17 +39,6 @@ export const BlockFilmes = styled.div `
   }
 `;
 
-export const Note = styled.div `
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-self: flex-end;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: #75A9A4;
-  color: #fff;
-`;
 
 
 
@@ -94,8 +83,8 @@ export const Description = styled.p `
 
 export const Notes = styled.div`
   position: absolute;
-  left: 17vw;
   top: 0vh;
+  right: 10vw;
   width: 40px;
   height: 40px;
   background: #75A9A4;
@@ -103,7 +92,17 @@ export const Notes = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  align-self: flex-end;
   color: #fff;
   font-weight: 800;
   
+  @media(max-width: 768px){
+    right: 13vw;
+  }
+  @media(max-width: 425px){
+    right: 17vw;
+  }
+  @media(max-width: 350px){
+    right: 4vw;
+  }
 `;
