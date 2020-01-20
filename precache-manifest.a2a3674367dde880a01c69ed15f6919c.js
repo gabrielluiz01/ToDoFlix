@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "addcd0db253b7ddd7e82477a16361393",
+    "revision": "6f48cd79788817251891d07c9fc2ee39",
     "url": "/ToDoFlix/index.html"
   },
   {
-    "revision": "8a984fb619df7a2be713",
+    "revision": "2c52111fd40094444c91",
     "url": "/ToDoFlix/static/css/main.449fb2b6.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ToDoFlix/static/js/2.917a439e.chunk.js.LICENSE"
   },
   {
-    "revision": "8a984fb619df7a2be713",
-    "url": "/ToDoFlix/static/js/main.e1ee5274.chunk.js"
+    "revision": "2c52111fd40094444c91",
+    "url": "/ToDoFlix/static/js/main.ee9b3ad6.chunk.js"
   },
   {
     "revision": "57e9c5434681e78a4c4f",
