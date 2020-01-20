@@ -73,6 +73,25 @@ export const Menu = styled.div `
    }
 
 `;
+export const QueroVer = styled.div `
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  background: #75a9a4;
+  color: #fff;
+  margin-bottom: 1rem;
+`;
+export const JaVisto = styled.div `
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  background: #F0C18B;
+  color: #fff;
+  margin-bottom: 1rem;
+`;
+
 
 export const Overlay = styled.div `
    position: fixed;
@@ -85,8 +104,9 @@ export const Overlay = styled.div `
    width: 100%;
    height: 100vh;
    background: #00000040;
+   z-index: 99;
 `;
-export const Modal = styled.div `
+export const Modal= styled.div `
    display: flex;
    justify-content: space-around;
    min-width: 55vw;
@@ -96,6 +116,7 @@ export const Modal = styled.div `
    border: none;
    border-radius: 5px;
    animation: fadeIn 1s ease-in-out;
+   z-index: 99;
 
    @media(max-width: 425px){
       min-width: 90%;
@@ -134,7 +155,8 @@ export const Form = styled.form  `
 export const Label = styled.label `
    display: flex;
    flex-direction: column;
-
+   align-items: flex-start;
+   width: 100%;
    button{
       width: 180px;
       align-self: flex-end;
@@ -148,9 +170,9 @@ export const Label = styled.label `
 `;
 
 export const Claquete = styled.img `
-   width: 40%;
+   width: 250px;
    align-self: flex-start;
-   margin-top: 5rem;
+   margin: 5rem 2rem 0 0;
 
    @media(max-width: 425px){
       display: none;
@@ -163,20 +185,15 @@ export const Star = styled.img `
 `;
 
 export const InputModal = styled.input `
+   width: 100%;
    margin-top: 0.5rem;
+   border: 2px solid #000;
    padding : 0.4rem 0.5rem;
    border-radius: 10px;
-   border: none;
    background: #F4F6F8;
 `;
 
-export const Description = styled.textarea`
-   margin-top: 0.5rem;
-   padding : 0.4rem 0.5rem;
-   border-radius: 10px;
-   border: none;
-   background: #F4F6F8;
-`;
+
 
 export const SpanButtons = styled.span `
    display: flex;
@@ -203,46 +220,27 @@ export const ButtonSend = styled.button `
    cursor: pointer;
 `;
 
-export const DropContainer = styled.div.attrs({
-   className: 'dropzone'
-})`
+
+export const Description = styled.textarea`
+   width: 100%;
    margin-top: 0.5rem;
    padding : 0.4rem 0.5rem;
    border-radius: 10px;
-   border: none;
+   border: 2px solid #000;
    background: #F4F6F8;
-   cursor: pointer; 
-   height: 3rem;
+`;
 
+export const InputUpload = styled.input `
+   display: none;
+`; 
+
+export const LabelUpload = styled.label`
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
 `;
 
 export const ButtonSendImage = styled.button `
-   width: 150px;
-   border-radius: 5px;
-   border: none;
-   background: #75A9A4;
-   padding: 0.3rem;
-   color : #fff;
-   cursor: pointer;
+   width: 120px;
    align-self: flex-end;
-`;
-
-export const Status = styled.div `
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 200px;
-  background: #75a9a4;
-  color: #fff;
-  margin-bottom: 1rem;
-`;
-
-export const JaVisto = styled.div `
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 200px;
-  background: #F0C18B;
-  color: #fff;
-  margin-bottom: 1rem;
 `;
