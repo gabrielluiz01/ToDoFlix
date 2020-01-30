@@ -1,0 +1,111 @@
+.overlay{
+   position: fixed;
+   top: 0;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   height: 100vh;
+   background-color: #00000059;
+}
+.modal{
+   display: flex;
+   justify-content: space-between;
+   min-width: 60vw;
+   height: 70vh;
+   padding: 1rem;
+   background-color: #ffff;
+   border-radius: 10px;
+}
+@media(max-width: 550px){
+   .modal{
+      width: 90%;
+      justify-content: center;
+   }
+}
+.formModal{
+   display: flex;
+   flex-direction: column;
+   justify-content: space-evenly;
+   width: 50%;
+}
+@media(max-width: 550px){
+   .formModal{
+      width: 100%;
+   }
+}
+.blockTitle{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 100%;
+}
+.formTitle{
+   font-size: 23px;
+}
+.buttonExit{
+   font-size: 25px;
+   color: #6b6b6b;
+   cursor: pointer;
+}
+label{
+   display: flex;
+   flex-direction: column;
+}
+.inputModal{
+   width: 100%;
+   border-radius: 20px;
+   border: 1px solid #6b6b6b;
+   padding: 0.5rem;
+   margin: 0.5rem 0;
+}
+.inputModalImage{
+   display: none;
+}
+.imageModal{
+   width: 220px;
+}
+.blockImage{
+   width: 40%;
+   margin-right: 1rem;
+}
+@media(max-width: 550px){
+   .blockImage{
+      display: none;
+   }
+}
+.buttonImage{
+   text-align: center;
+   width: 180px;
+   background: #75A9A4;
+   align-self: flex-end;
+   padding: 0.5rem;
+   border: none;
+   border-radius: 10px;
+   color: #FFF;
+   font-weight: 600;
+   cursor: pointer;
+}
+.span-buttons{
+   display: flex;
+   align-items: center;
+   justify-content: flex-end;
+}
+.buttonCancel{
+   padding: 3px;
+   color: #364859;
+   background: none;
+   border: none;
+   font-weight: 600;
+   cursor: pointer;
+}
+.buttonSend{
+   width: 70px;
+   padding: 5px;
+   color: #FFF;
+   background: #75A9A4;
+   border: none;
+   font-weight: 600;
+   margin-left: 2rem;
+   cursor: pointer;
+}

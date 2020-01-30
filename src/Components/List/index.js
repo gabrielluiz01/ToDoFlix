@@ -1,61 +1,33 @@
 import React, { Component } from 'react';
-import '../../App.css'
-import styled, { css }from 'styled-components';
-import {MyList, ListBlock, BlockFilmes, Notes, ImageMovie, Title, Description, Block} from './styles'
-import {JaVisto, QueroVer} from '../Header/styles'
-import Corra from '../../assets/corra.jpg'
-import Bacurau from '../../assets/bacurau.jpg'
-
-
-
-
-
+import './style.css'
+import capitaoFantastico from '../../assets/fantastico.jpg'
 
 export default class List extends Component {
-
-  state = {
-    movie: '',
-  }
-
-  changeStatus = () => {
-    this.props.Watched(this.state.movie)
-    this.setState({
-      movie:  <ListBlock>
-         {this.props.lista.map((items) => {
-            return(
-              <BlockFilmes>
-                <Notes>{items.note}</Notes>
-                  <Block>{this.props.image}</Block>
-                  <span onClick={this.changeStatus}>{items.status}</span>
-                <Title onClick={this.changeStatus}>{items.title}</Title>
-                <Description>{items.description}</Description>
-              </BlockFilmes>
-            )
-          })}
-    </ListBlock>
-    })
-  }
-
-
   render() {
-    
     return(
-      <MyList>
-        <h1>Minha lista:</h1>
-        <ListBlock>
-          {this.props.lista.map((items) => {
+       <section className="containerMovies">
+          <h1>Minha Lista</h1>
+          <div className="blockMovies">
+             <div className="imageMovie">
+                <div className="notesHigh">
+                   <p className="notes-text">5</p>
+                </div>
+               <img src={capitaoFantastico}/>
+               <h1>Capitão Fantástico</h1>
+               <p className="movieDescription">Nas florestas do estado de Washington, um pai cria seus seis filhos longe da civilização, em uma rígida rotina de aventuras.</p>
+             </div>
+            {this.props.movies.map(items =>{
             return(
-              <BlockFilmes>
-                <Notes>{items.note}</Notes>
-                  <Block>{this.props.image}</Block>
-                  <span onClick={this.changeStatus}>{items.status}</span>
-                <Title onClick={this.changeStatus}>{items.title}</Title>
-                <Description>{items.description}</Description>
-              </BlockFilmes>
+               <div className="imageMovie">
+               {items.image}
+               <h1>{items.title}</h1>
+               <p className="movieDescription">{items.description}</p>
+               </div>
             )
-          })}
-        </ListBlock>
-      </MyList>
-    )
+            })}
+          </div>
+
+       </section>
+    );
   }
 }
